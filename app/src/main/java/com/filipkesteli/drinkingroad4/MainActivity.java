@@ -76,12 +76,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 //ugasimo drawer ako kliknemo na neki od itema
                 mDrawerLayout.closeDrawers();
-                if (menuItem.getItemId() == R.id.nav_item_sent) {
-                    mFragmentManager
-                            .beginTransaction()
-                            .replace(R.id.containerView, new SentFragment())
-                            .commit();
-                }
                 if (menuItem.getItemId() == R.id.nav_item_inbox) {
                     mFragmentManager
                             .beginTransaction()
