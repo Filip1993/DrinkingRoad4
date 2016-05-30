@@ -1,14 +1,269 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".StartFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <Button
-        android:layout_width="wrap_content"
-        android:text="@string/start_your_drinking_road"
-        android:id="@+id/btnStart"
-        android:layout_height="wrap_content" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/red_100"
+        android:orientation="vertical"
+        tools:context=".SettingsFragment">
 
-</FrameLayout>
+        <!-- TODO: Update blank fragment layout -->
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            card_view:cardCornerRadius="8dp"
+            card_view:cardElevation="16dp"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    card_view:cardBackgroundColor="@color/red_100"
+                    card_view:cardCornerRadius="8dp"
+                    card_view:cardElevation="16dp"
+                    card_view:cardUseCompatPadding="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Drink the world :)"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/red_900"
+                            android:textSize="36sp" />
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    card_view:cardBackgroundColor="@color/red_100"
+                    card_view:cardCornerRadius="8dp"
+                    card_view:cardElevation="16dp"
+                    card_view:cardUseCompatPadding="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Level"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/red_900"
+                            android:textSize="32sp" />
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/cvPakistan"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            card_view:cardCornerRadius="8dp"
+                            card_view:cardElevation="16dp"
+                            card_view:cardUseCompatPadding="true">
+
+                            <ImageView
+                                android:id="@+id/ivPakikstan"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/pakistan" />
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/cvBhutan"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            card_view:cardCornerRadius="8dp"
+                            card_view:cardElevation="16dp"
+                            card_view:cardUseCompatPadding="true">
+
+                            <ImageView
+                                android:id="@+id/ivBhutan"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/bhutan" />
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/cvIsrael"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            card_view:cardCornerRadius="8dp"
+                            card_view:cardElevation="16dp"
+                            card_view:cardUseCompatPadding="true">
+
+                            <ImageView
+                                android:id="@+id/ivIsrael"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/israel" />
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/cvMacedonia"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            card_view:cardCornerRadius="8dp"
+                            card_view:cardElevation="16dp"
+                            card_view:cardUseCompatPadding="true">
+
+                            <ImageView
+                                android:id="@+id/ivMacedonia"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/macedonia" />
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/cvIreland"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            card_view:cardCornerRadius="8dp"
+                            card_view:cardElevation="16dp"
+                            card_view:cardUseCompatPadding="true">
+
+                            <ImageView
+                                android:id="@+id/ivIreland"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/ireland" />
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/cvCroatia"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            card_view:cardCornerRadius="8dp"
+                            card_view:cardElevation="16dp"
+                            card_view:cardUseCompatPadding="true">
+
+                            <ImageView
+                                android:id="@+id/ivCroatia"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/croatia" />
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/cvBelarus"
+                            android:layout_width="200dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            card_view:cardCornerRadius="8dp"
+                            card_view:cardElevation="16dp"
+                            card_view:cardUseCompatPadding="true">
+
+                            <ImageView
+                                android:id="@+id/ivBelarus"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/belarus" />
+                        </android.support.v7.widget.CardView>
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    card_view:cardBackgroundColor="@color/red_100"
+                    card_view:cardCornerRadius="8dp"
+                    card_view:cardElevation="16dp"
+                    card_view:cardUseCompatPadding="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/number_of_players"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/red_900"
+                            android:textSize="32sp" />
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="160dp"
+                            android:layout_height="120dp"
+                            android:layout_below="@+id/textView"
+                            android:layout_centerHorizontal="true"
+                            card_view:cardBackgroundColor="@color/red_100"
+                            card_view:cardCornerRadius="8dp"
+                            card_view:cardElevation="16dp"
+                            card_view:cardUseCompatPadding="true">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <EditText
+                                    android:id="@+id/editText"
+                                    android:layout_width="48dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_gravity="center_horizontal"
+                                    android:background="@android:color/transparent"
+                                    android:ems="10"
+                                    android:inputType="number"
+                                    android:textColor="@color/red_900"
+                                    android:textSize="32sp" />
+
+                            </RelativeLayout>
+
+                        </android.support.v7.widget.CardView>
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView>

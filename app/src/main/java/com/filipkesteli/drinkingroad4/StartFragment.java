@@ -15,8 +15,6 @@ import android.widget.Button;
  */
 public class StartFragment extends Fragment {
 
-    private Button btnStart;
-
     public StartFragment() {
         // Required empty public constructor
     }
@@ -35,17 +33,11 @@ public class StartFragment extends Fragment {
     }
 
     private void initWidgets(View v) {
-        btnStart = (Button) v.findViewById(R.id.btnStart);
+
     }
 
     private void setupListeners() {
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MapsActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
 }
