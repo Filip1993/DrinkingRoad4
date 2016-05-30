@@ -1,7 +1,9 @@
 package com.filipkesteli.drinkingroad4;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.multidex.MultiDex;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -29,6 +31,15 @@ public class MainActivity extends AppCompatActivity {
         initWidgets();
         setupFragmentManager();
         setupNavigationDrawer();
+    }
+
+    /**
+     *Instaliramo MultiDex, tako da mozemo imati vise metoda -> Stack Overflow
+     */
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        MultiDex.install(this);
     }
 
     private void initWidgets() {
