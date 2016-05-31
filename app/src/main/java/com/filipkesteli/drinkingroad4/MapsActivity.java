@@ -1,7 +1,10 @@
 package com.filipkesteli.drinkingroad4;
 
+import android.app.DialogFragment;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,8 +26,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
 
+    private FloatingActionButton fab;
+
     private List<LatLng> listOfLatLngs = new ArrayList<>();
-    private List<LatLng> listOfInitialLatLngs = new ArrayList<>();
+    private List<LatLng> listOfInitialLatLngs = new ArrayList<>(); //random coordinates
     private StartFragment startFragment = new StartFragment();
 
     @Override
@@ -35,6 +40,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        //Bussiness Logic:
+        initWidgets();
+        setupListeners();
     }
 
     @Override
@@ -47,6 +56,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
         //addHeatMap();
+        proba();
+    }
+
+    private void initWidgets() {
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+    }
+
+    private void setupListeners() {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment dialogFragment = new PROBAdialog();
+                dialogFragment.show(getFragmentManager(), null);
+            }
+        });
+    }
+
+    private void proba() {
+        Toast.makeText(MapsActivity.this, startFragment.getListOfPossibleSips().size() + "\n" + startFragment.getNumberOfPlayers().toString(), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -63,12 +91,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         // Get the data: latitude/longitude positions
-
+        LatLng l = new LatLng(3, 4);
+        listOfLatLngs.add(l);
 
         // Create a heat map tile provider, passing it the latlngs of the listOfInitialLatLngs:
         HeatmapTileProvider provider = new HeatmapTileProvider.Builder().data(listOfInitialLatLngs).build();
         // Add a tile overlay to the map, using the heat map tile provider.
         mMap.addTileOverlay(new TileOverlayOptions().tileProvider(provider));
     }
-
 }
+

@@ -43,7 +43,7 @@ public class StartFragment extends Fragment {
     //Bussiness logic variables
     private List<CardView> cardViewList = new ArrayList<>();
     private List<Integer> listOfPossibleSips = new ArrayList<>();
-    private Double numberOfPlayers;
+    private Double numberOfPlayers = 0.0;
 
     //Objects from my own classes
     private Pakistan pakistan;
@@ -64,20 +64,11 @@ public class StartFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_start, container, false);
         initWidgets(v);
-        initBussinessLogicVariables();
         initCoutries();
+        initBussinessLogicVariables();
+        setupDefaultValues();
         setupListeners();
         return v;
-    }
-
-    private void initCoutries() {
-        pakistan = new Pakistan(1, 4);
-        bhutan = new Bhutan(2, 5);
-        israel = new Israel(3, 6);
-        macedonia = new Macedonia(4, 7);
-        ireland = new Ireland(5, 8);
-        croatia = new Croatia(6, 9);
-        belarus = new Belarus(7, 10);
     }
 
     private void initWidgets(View v) {
@@ -92,8 +83,17 @@ public class StartFragment extends Fragment {
         etPlayers = (EditText) v.findViewById(R.id.etPlayers);
     }
 
+    private void initCoutries() {
+        pakistan = new Pakistan(1, 4);
+        bhutan = new Bhutan(2, 5);
+        israel = new Israel(3, 6);
+        macedonia = new Macedonia(4, 7);
+        ireland = new Ireland(5, 8);
+        croatia = new Croatia(6, 9);
+        belarus = new Belarus(7, 10);
+    }
+
     private void initBussinessLogicVariables() {
-        cardViewList = new ArrayList<>();
         cardViewList.add(cvPakistan);
         cardViewList.add(cvBhutan);
         cardViewList.add(cvIsrael);
@@ -101,15 +101,24 @@ public class StartFragment extends Fragment {
         cardViewList.add(cvIreland);
         cardViewList.add(cvCroatia);
         cardViewList.add(cvBelarus);
-
-        listOfPossibleSips = new ArrayList<>();
     }
 
-    private boolean isFormatOK() {
-        if (etPlayers.getText().toString() == "") {
+    //Problematicno:
+    private void setupDefaultValues() {
+        //default values:
+        cvPakistan.setCardBackgroundColor(Color.YELLOW);
+        listOfPossibleSips = pakistan.getPossibleSips();
+        etPlayers.setText(5 + "");
+        numberOfPlayers = 5.0;
+        Toast.makeText(getActivity(), listOfPossibleSips.size() + "\n" + numberOfPlayers, Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean isFormOK() {
+        if (etPlayers.getText().toString().trim().length() == 0) {
             Toast.makeText(getActivity(), "Please insert number of players", Toast.LENGTH_SHORT).show();
             return false;
         }
+        numberOfPlayers = Double.parseDouble(etPlayers.getText().toString());
         return true;
     }
 
@@ -118,12 +127,8 @@ public class StartFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MapsActivity.class);
-                String s = etPlayers.getText().toString();
-                if (s != "") {
-                    numberOfPlayers = Double.parseDouble(etPlayers.getText().toString());
+                if (isFormOK()) {
                     startActivity(intent);
-                } else {
-                    Toast.makeText(getActivity(), "Please insert number of players", Toast.LENGTH_SHORT).show();
                 }
             }
         });
