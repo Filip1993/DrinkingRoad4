@@ -29,6 +29,8 @@ import java.util.List;
  */
 public class StartFragment extends Fragment {
 
+    public static final String LIST_OF_POSSIBLE_SIPS_EXTRA = "LIST_OF_POSSIBLE_SIPS_EXTRA";
+    public static final String NUMBER_OF_PLAYERS_EXTRA = "NUMBER_OF_PLAYERS_EXTRA";
     //View variables
     private CardView cvStart;
     private CardView cvPakistan;
@@ -43,7 +45,7 @@ public class StartFragment extends Fragment {
     //Bussiness logic variables
     private List<CardView> cardViewList = new ArrayList<>();
     private List<Integer> listOfPossibleSips = new ArrayList<>();
-    private Double numberOfPlayers = 0.0;
+    public Integer numberOfPlayers;
 
     //Objects from my own classes
     private Pakistan pakistan;
@@ -109,7 +111,7 @@ public class StartFragment extends Fragment {
         cvPakistan.setCardBackgroundColor(Color.YELLOW);
         listOfPossibleSips = pakistan.getPossibleSips();
         etPlayers.setText(5 + "");
-        numberOfPlayers = 5.0;
+        numberOfPlayers = 5;
         Toast.makeText(getActivity(), listOfPossibleSips.size() + "\n" + numberOfPlayers, Toast.LENGTH_SHORT).show();
     }
 
@@ -118,7 +120,6 @@ public class StartFragment extends Fragment {
             Toast.makeText(getActivity(), "Please insert number of players", Toast.LENGTH_SHORT).show();
             return false;
         }
-        numberOfPlayers = Double.parseDouble(etPlayers.getText().toString());
         return true;
     }
 
@@ -128,6 +129,10 @@ public class StartFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MapsActivity.class);
                 if (isFormOK()) {
+                    ArrayList<Integer> arrayList = (ArrayList<Integer>) listOfPossibleSips;
+                    intent.putIntegerArrayListExtra(LIST_OF_POSSIBLE_SIPS_EXTRA, arrayList);
+                    numberOfPlayers = Integer.parseInt(etPlayers.getText().toString() + "");
+                    intent.putExtra(NUMBER_OF_PLAYERS_EXTRA, numberOfPlayers);
                     startActivity(intent);
                 }
             }
@@ -138,7 +143,7 @@ public class StartFragment extends Fragment {
             public void onClick(View v) {
                 setCardColor(cvPakistan);
                 listOfPossibleSips = pakistan.getPossibleSips();
-                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size()-1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size() - 1), Toast.LENGTH_SHORT).show();
             }
         });
         cvBhutan.setOnClickListener(new View.OnClickListener() {
@@ -146,7 +151,7 @@ public class StartFragment extends Fragment {
             public void onClick(View v) {
                 setCardColor(cvBhutan);
                 listOfPossibleSips = bhutan.getPossibleSips();
-                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size()-1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size() - 1), Toast.LENGTH_SHORT).show();
             }
         });
         cvIsrael.setOnClickListener(new View.OnClickListener() {
@@ -154,7 +159,7 @@ public class StartFragment extends Fragment {
             public void onClick(View v) {
                 setCardColor(cvIsrael);
                 listOfPossibleSips = israel.getPossibleSips();
-                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size()-1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size() - 1), Toast.LENGTH_SHORT).show();
             }
         });
         cvMacedonia.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +167,7 @@ public class StartFragment extends Fragment {
             public void onClick(View v) {
                 setCardColor(cvMacedonia);
                 listOfPossibleSips = macedonia.getPossibleSips();
-                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size()-1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size() - 1), Toast.LENGTH_SHORT).show();
             }
         });
         cvIreland.setOnClickListener(new View.OnClickListener() {
@@ -170,7 +175,7 @@ public class StartFragment extends Fragment {
             public void onClick(View v) {
                 setCardColor(cvIreland);
                 listOfPossibleSips = ireland.getPossibleSips();
-                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size()-1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size() - 1), Toast.LENGTH_SHORT).show();
             }
         });
         cvCroatia.setOnClickListener(new View.OnClickListener() {
@@ -178,7 +183,7 @@ public class StartFragment extends Fragment {
             public void onClick(View v) {
                 setCardColor(cvCroatia);
                 listOfPossibleSips = croatia.getPossibleSips();
-                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size()-1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size() - 1), Toast.LENGTH_SHORT).show();
             }
         });
         cvBelarus.setOnClickListener(new View.OnClickListener() {
@@ -186,7 +191,7 @@ public class StartFragment extends Fragment {
             public void onClick(View v) {
                 setCardColor(cvBelarus);
                 listOfPossibleSips = belarus.getPossibleSips();
-                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size()-1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Minimum sips: " + listOfPossibleSips.get(0) + "\n" + "Maximum sips: " + listOfPossibleSips.get(listOfPossibleSips.size() - 1), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -199,14 +204,5 @@ public class StartFragment extends Fragment {
                 cv.setCardBackgroundColor(Color.YELLOW);
             }
         }
-    }
-
-    //Ovim getterima se otvaramo:
-    public List<Integer> getListOfPossibleSips() {
-        return listOfPossibleSips;
-    }
-
-    public Double getNumberOfPlayers() {
-        return numberOfPlayers;
     }
 }
