@@ -29,6 +29,7 @@
                 android:orientation="vertical">
 
                 <android.support.v7.widget.CardView
+                    android:id="@+id/cvStart"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     card_view:cardBackgroundColor="@color/red_100"
@@ -96,11 +97,20 @@
                             card_view:cardElevation="16dp"
                             card_view:cardUseCompatPadding="true">
 
-                            <ImageView
-                                android:id="@+id/ivPakikstan"
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/pakistan" />
+                                android:layout_height="match_parent">
+                                <ImageView
+                                    android:id="@+id/ivPakikstan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="80dp"
+                                    android:src="@drawable/pakistan"
+                                    android:layout_centerVertical="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true" />
+                            </RelativeLayout>
+
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView
@@ -112,11 +122,20 @@
                             card_view:cardElevation="16dp"
                             card_view:cardUseCompatPadding="true">
 
-                            <ImageView
-                                android:id="@+id/ivBhutan"
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/bhutan" />
+                                android:layout_height="match_parent">
+                                <ImageView
+                                    android:id="@+id/ivBhutan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="80dp"
+                                    android:src="@drawable/bhutan"
+                                    android:layout_centerVertical="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true" />
+                            </RelativeLayout>
+
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView
@@ -128,11 +147,20 @@
                             card_view:cardElevation="16dp"
                             card_view:cardUseCompatPadding="true">
 
-                            <ImageView
-                                android:id="@+id/ivIsrael"
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/israel" />
+                                android:layout_height="match_parent">
+                                <ImageView
+                                    android:id="@+id/ivIsrael"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="80dp"
+                                    android:src="@drawable/israel"
+                                    android:layout_centerVertical="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true" />
+                            </RelativeLayout>
+
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView
@@ -144,11 +172,20 @@
                             card_view:cardElevation="16dp"
                             card_view:cardUseCompatPadding="true">
 
-                            <ImageView
-                                android:id="@+id/ivMacedonia"
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/macedonia" />
+                                android:layout_height="match_parent">
+                                <ImageView
+                                    android:id="@+id/ivMacedonia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="80dp"
+                                    android:src="@drawable/macedonia"
+                                    android:layout_centerVertical="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true" />
+                            </RelativeLayout>
+
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView
@@ -160,11 +197,20 @@
                             card_view:cardElevation="16dp"
                             card_view:cardUseCompatPadding="true">
 
-                            <ImageView
-                                android:id="@+id/ivIreland"
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/ireland" />
+                                android:layout_height="match_parent">
+                                <ImageView
+                                    android:id="@+id/ivIreland"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="80dp"
+                                    android:src="@drawable/ireland"
+                                    android:layout_centerVertical="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true" />
+                            </RelativeLayout>
+
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView
@@ -176,11 +222,20 @@
                             card_view:cardElevation="16dp"
                             card_view:cardUseCompatPadding="true">
 
-                            <ImageView
-                                android:id="@+id/ivCroatia"
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/croatia" />
+                                android:layout_height="match_parent">
+                                <ImageView
+                                    android:id="@+id/ivCroatia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="80dp"
+                                    android:src="@drawable/croatia"
+                                    android:layout_centerVertical="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true" />
+                            </RelativeLayout>
+
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView
@@ -192,12 +247,24 @@
                             card_view:cardElevation="16dp"
                             card_view:cardUseCompatPadding="true">
 
-                            <ImageView
-                                android:id="@+id/ivBelarus"
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/belarus" />
+                                android:layout_height="match_parent">
+                                <ImageView
+                                    android:id="@+id/ivBelarus"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="80dp"
+                                    android:src="@drawable/belarus"
+                                    android:layout_centerVertical="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentStart="true" />
+                            </RelativeLayout>
+
                         </android.support.v7.widget.CardView>
+
+
+
                     </LinearLayout>
                 </HorizontalScrollView>
 
@@ -241,7 +308,7 @@
                                 android:layout_height="match_parent">
 
                                 <EditText
-                                    android:id="@+id/editText"
+                                    android:id="@+id/etPlayers"
                                     android:layout_width="48dp"
                                     android:layout_height="wrap_content"
                                     android:layout_centerHorizontal="true"
