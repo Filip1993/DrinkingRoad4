@@ -30,4 +30,6 @@ public class PROBAMapsActivity {
         croatia = new Croatia(6, 9);
         belarus = new Belarus(7, 10);
     }
+
+
 }

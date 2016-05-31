@@ -15,19 +15,21 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.TileOverlayOptions;
+import com.google.maps.android.SphericalUtil;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
 
-import org.json.JSONException;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    public static final String INTENT_TO_DIALOG_FRAGMENT = "INTENT_TO_DIALOG_FRAGMENT";
     private GoogleMap mMap;
 
     private FloatingActionButton fab;
+    private int counter;
 
     private List<LatLng> listOfLatLngs = new ArrayList<>();
     private List<LatLng> listOfInitialLatLngs = new ArrayList<>(); //random coordinates
@@ -41,10 +43,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        //Bussiness Logic:
-        initWidgets();
-        setupListeners();
     }
 
     @Override
@@ -56,62 +54,84 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
-        //addHeatMap();
-        //proba();
-        addHeatMap();
+        //Bussiness Logic:
+        initWidgets();
+        setupListeners();
+        initPoints();
     }
 
     private void initWidgets() {
         fab = (FloatingActionButton) findViewById(R.id.fab);
     }
 
+    private void initPoints() {
+        for (int i = 0; i < 10; i++) {
+            Random randomLat = new Random();
+            double lat = 90 * randomLat.nextDouble();
+            Random randomLng = new Random();
+            double lng = 180 * randomLng.nextDouble();
+            LatLng l = new LatLng(lat, lng);
+            listOfInitialLatLngs.add(l);
+        }
+        addHeatMap(listOfInitialLatLngs);
+        listOfLatLngs.addAll(listOfInitialLatLngs);
+    }
+
+    private void addHeatMap(List<LatLng> list) {
+        // Create a heat map tile provider, passing it the latlngs of the listOfInitialLatLngs:
+        HeatmapTileProvider heatmapTileProvider = new HeatmapTileProvider.Builder().data(list).build();
+        // Add a tile overlay to the map, using the heat map tile provider.
+        mMap.addTileOverlay(new TileOverlayOptions().tileProvider(heatmapTileProvider));
+    }
+
     private void setupListeners() {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment dialogFragment = new PROBAdialog();
-                dialogFragment.show(getFragmentManager(), null);
+                getRuleOfTheGame();
             }
         });
     }
 
-    private void proba() {
-        Intent intent = getIntent();
-        if (intent.hasExtra(StartFragment.LIST_OF_POSSIBLE_SIPS_EXTRA) && intent.hasExtra(StartFragment.NUMBER_OF_PLAYERS_EXTRA)) {
-            Toast.makeText(MapsActivity.this,
-                    intent.getIntegerArrayListExtra(StartFragment.LIST_OF_POSSIBLE_SIPS_EXTRA).size()
-                            + "\n"
-                            + intent.getIntExtra(StartFragment.NUMBER_OF_PLAYERS_EXTRA, -199)
-                    , Toast.LENGTH_SHORT).show();
+    private void getRuleOfTheGame() {
+        Intent intent = getIntent(); //prihvacamo intent
+        if (intent.hasExtra(StartFragment.LIST_OF_POSSIBLE_SIPS_EXTRA)) {
+            DialogFragment dialogFragment = new PROBAdialog(); //stvaramo novi dijalog
+            dialogFragment.show(getFragmentManager(), null);
+
+            LatLng tryLatLnt = getRandomPoint();
+            ArrayList<Integer> arrayList = intent.getIntegerArrayListExtra(StartFragment.LIST_OF_POSSIBLE_SIPS_EXTRA);
+
+            for (LatLng l : listOfLatLngs) {
+                Double distanceInMeters = SphericalUtil.computeDistanceBetween(tryLatLnt, l);
+                ArrayList<Double> doubleArrayList = new ArrayList<>();
+                doubleArrayList.add(distanceInMeters);
+                Double minDistance = Collections.min(doubleArrayList);
+
+                if (minDistance <= 10000) {
+                    counter = arrayList.get(3);
+                } else if (minDistance <= 10000 && minDistance <= 100000) {
+                    counter = arrayList.get(2);
+                } else if (minDistance <= 100000 && minDistance <= 1000000) {
+                    counter = arrayList.get(1);
+                } else if (minDistance <= 10000000 && minDistance <= 10000000) {
+                    counter = arrayList.get(0);
+                }
+            }
+            addHeatMap(listOfLatLngs);
+            Intent intentToDialog = new Intent(MapsActivity.this, PROBAdialog.class);
+            intentToDialog.putExtra(INTENT_TO_DIALOG_FRAGMENT, counter); //int extra -> number of sips to drink
         }
-        /*Toast.makeText(MapsActivity.this, startFragment.getListOfPossibleSips().size() + "\n" + startFragment.getNumberOfPlayers().toString() + "\n" + startFragment.numberOfPlayers, Toast.LENGTH_SHORT).show();*/
     }
 
-    /**
-     * Add a simple heat map to the map
-     */
-    private void addHeatMap() {
-        Intent intent = getIntent();
-        if (intent.hasExtra(StartFragment.LIST_OF_POSSIBLE_SIPS_EXTRA)) {
-            for (int i = 0; i < 10; i++) {
-                Random randomLat = new Random();
-                double lat = 90 * randomLat.nextDouble();
-                Random randomLng = new Random();
-                double lng = 180 * randomLng.nextDouble();
-                LatLng l = new LatLng(lat, lng);
-                listOfInitialLatLngs.add(l);
-            }
-
-
-            // Get the data: latitude/longitude positions
-            LatLng l = new LatLng(3, 4);
-            listOfLatLngs.add(l);
-
-            // Create a heat map tile provider, passing it the latlngs of the listOfInitialLatLngs:
-            HeatmapTileProvider provider = new HeatmapTileProvider.Builder().data(listOfInitialLatLngs).build();
-            // Add a tile overlay to the map, using the heat map tile provider.
-            mMap.addTileOverlay(new TileOverlayOptions().tileProvider(provider));
-        }
+    private LatLng getRandomPoint() {
+        Random randomLat = new Random();
+        double lat = 90 * randomLat.nextDouble();
+        Random randomLng = new Random();
+        double lng = 180 * randomLng.nextDouble();
+        LatLng l = new LatLng(lat, lng);
+        listOfLatLngs.add(l);
+        return l;
     }
 }
 
