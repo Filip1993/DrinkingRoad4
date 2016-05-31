@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,23 +25,22 @@ public class PROBAdialog extends DialogFragment {
         View v = layoutInflater.inflate(R.layout.insert_text_dialog, null);
         builder.setView(v);
 
-        //negativni button:
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNeutralButton("See strategy map and drink again", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(getActivity(), MapsActivity.class);
                 dismiss();
             }
         });
-
-        //pozitivni button:
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dismiss();
-            }
-        });
-
+        handleIntents();
         return builder.create();
+    }
+
+    private void handleIntents() {
+        Intent intent = getActivity().getIntent();
+        if (intent.hasExtra(MapsActivity.INTENT_TO_DIALOG_FRAGMENT)) {
+
+        }
     }
 
 }
